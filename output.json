@@ -1,0 +1,20 @@
+{
+  "product_type": "Software as a Medical Device (SaMD), AI-based clinical decision support system",
+  "brief_description": "A cloud-based AI system that analyzes wearable device data to detect early signs of cardiovascular disease and provides risk scores and visual insights for clinicians.",
+  "intended_purpose": "To support clinicians by identifying early signs of cardiovascular disease from wearable device data and presenting risk scores and visual insights; it does not autonomously diagnose or decide treatment.",
+  "target_users": "Clinicians",
+  "usage_environment": "Clinical decision support setting",
+  "core_technologies": "AI/ML-based analysis, risk scoring, visual analytics",
+  "data_sources": "Wearable device data",
+  "data_processing_type": "Analysis of wearable data to detect early signs of cardiovascular disease and generate risk scores and visual insights",
+  "deployment_environment": "Cloud environment",
+  "system_integrations": null,
+  "safety_risks": "Potential for incorrect or misleading risk scores or visual insights that could affect clinical decision-making; risk of overreliance despite human-in-the-loop use",
+  "cybersecurity_risks": "Cloud-based system may be exposed to unauthorized access, data breaches, or tampering with clinical data or outputs",
+  "privacy_risks": "Processing of wearable device data may involve sensitive health data and create risks of unauthorized disclosure or misuse",
+  "human_in_the_loop": "Yes; the system supports clinicians and does not make autonomous diagnoses or treatment decisions",
+  "regulated_domains": "Medical devices, healthcare, AI/ML-enabled clinical decision support, health data privacy and security",
+  "possible_classification": "Software as a Medical Device (SaMD); likely regulated medical device subject to clinical evaluation, risk management, cybersecurity, and post-market surveillance requirements",
+  "lifecycle_stages": "Development, clinical validation, deployment, monitoring, post-market surveillance",
+  "missing_information": "Specific jurisdiction(s) and applicable regulatory framework; intended patient population; exact cardiovascular conditions targeted; device/software interoperability and integrations; data retention and governance details; model training, validation, and update/change management approach; performance metrics; clinical evidence plan; cybersecurity controls; privacy/legal basis and consent model; quality management system; risk management process; post-market monitoring procedures; whether outputs are intended for diagnosis, screening, triage, or monitoring; whether the system is standalone or integrated into another clinical workflow"
+}

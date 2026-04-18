@@ -1,0 +1,20 @@
+{
+  "product_type": "Cloud-based clinical decision support software platform",
+  "brief_description": "Machine learning–driven platform that analyzes wearable-derived physiological data (heart rate, activity, sleep) to generate cardiovascular risk scores and provide clinician-facing dashboards; supports outpatient care; not a diagnosis or treatment recommendation; requires human clinician interpretation and final decision.",
+  "intended_purpose": "Support outpatient clinicians in identifying early signs of cardiovascular disease by producing risk scores from wearable and health data; clinician review is required for interpretation and final decisions.",
+  "target_users": "Trained healthcare professionals (clinicians) in outpatient clinical settings",
+  "usage_environment": "Outpatient clinical settings; cloud-based platform with interoperability to electronic health records (EHRs) and wearable data sources",
+  "core_technologies": "Machine learning algorithms for predictive analytics; data integration from wearables; cloud infrastructure; data visualization dashboards",
+  "data_sources": "Wearable devices (heart rate, physical activity, sleep patterns); Electronic Health Record (EHR) systems via integration",
+  "data_processing_type": "Predictive analytics and risk scoring applied to physiological data; generation of clinician-facing dashboards",
+  "deployment_environment": "Cloud infrastructure",
+  "system_integrations": "Electronic Health Records (EHR) systems; data exchange with wearable platforms via APIs",
+  "safety_risks": "Potential for misinterpretation or overreliance on risk scores; residual risk if ML model performance degrades; no automated diagnosis or treatment; requires human-in-the-loop",
+  "cybersecurity_risks": "Risk of data breach or unauthorized access to PHI in transit and at rest; cloud security vulnerabilities; supply chain risk; need for access control, encryption, and regular assessments",
+  "privacy_risks": "Processing of personal health information; compliance with privacy laws; data minimization, consent, data sharing with EHRs and vendors",
+  "human_in_the_loop": "Required; clinician interprets risk scores and makes final decisions",
+  "regulated_domains": "Healthcare; Medical Device Software (CDSS); regulatory compliance for PHI and data protection",
+  "possible_classification": "Possible Software as a Medical Device (SaMD) for Clinical Decision Support; regulatory classification and pathway depend on jurisdiction",
+  "lifecycle_stages": "Data collection; model development and validation; deployment; monitoring and maintenance; updates and governance; post-market surveillance",
+  "missing_information": "Algorithm details and validation methodology; regulatory jurisdiction and classification plan; data retention and provenance; security controls and incident response; governance, auditing, and versioning; third-party vendors and liability framework; performance thresholds and monitoring plans"
+}
