@@ -1,5 +1,5 @@
-streamlit==1.33.0
-sentence-transformers==2.7.0
+streamlit==1.53.0
+sentence-transformers==5.2.0
 faiss-cpu==1.13.2
 numpy==1.26.4
-openai
+openai==2.8.1
