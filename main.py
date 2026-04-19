@@ -1,6 +1,5 @@
 import streamlit as st
 from openai import OpenAI
-import tiktoken
 from OpenAI import get_response
 from embedding import generate_embeddings
 from topk import generate_topk
