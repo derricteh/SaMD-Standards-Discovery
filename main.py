@@ -9,14 +9,14 @@ from topk import generate_topk
 def run_streamlit():
    
     st.title('SaMD Standards Discovery')
-    # openai_api_key = st.sidebar.text_input('OpenAI API Key')
+    openai_api_key = st.sidebar.text_input('OpenAI API Key')
 
     with st.form('my_form'):
         description_box = st.text_area('Enter Description Here:', placeholder='Enter detailed description here')
         submitted = st.form_submit_button('Submit')
         st.empty()
-        response = get_response(description_box)
-        st.json(response.output_text)
+        response = get_response(openai_api_key, description_box)
+        # st.json(response.output_text)
 
         with open('output.json', 'w') as f:
             print (response.output_text, file = f)

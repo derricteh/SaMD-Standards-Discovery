@@ -12,37 +12,45 @@ def generate_topk(k=10):
     
     index = faiss.read_index("faiss_index.bin")
 
-    # file_path = 'output.txt'
-
     with open("chunks.json", "r", encoding="utf-8") as f:
         chunks = json.load(f)
 
-    # with open(file_path, 'r') as file:
-    #     user_input = file.read()
+    subqueries = generate()
 
-    user_input = generate()
+    model = SentenceTransformer('BAAI/bge-large-en-v1.5')
 
-    model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+    all_results = {}  
 
-    query_embedding = model.encode(user_input)
-    query_embedding = query_embedding / np.linalg.norm(query_embedding, axis=1, keepdims=True)
+    for query in subqueries:
+        query_with_prefix = "Represent this sentence for searching relevant passages: " + query
+        query_embedding = model.encode(query_with_prefix, convert_to_numpy=True)
+        query_embedding = query_embedding / np.linalg.norm(query_embedding)
+        query_embedding = query_embedding.reshape(1, -1)
 
-    D, I = index.search(query_embedding, k=k)
+        D, I = index.search(query_embedding, k=k)
 
-    print_topk(D, I, chunks)
+        for score, idx in zip(D[0], I[0]):
+            if idx not in all_results or score > all_results[idx]['score']:
+                all_results[idx] = {
+                    'score': score,
+                    'chunk': chunks[idx]
+                }
 
-def print_topk(D, I, chunks):
-    print("\nTop K Results:\n")
+    sorted_results = sorted(all_results.values(), key=lambda x: x['score'], reverse=True)[:k]
 
-    for rank, idx in enumerate(I[0]):
-        chunk = chunks[idx]
-        score = D[0][rank]
+    print_topk(sorted_results)
 
-        st.write(f"Rank {rank+1}")
-        st.write(f"Score: {score:.4f}")
-        st.write(f"Doc ID: {chunk['doc_id']} | Chunk ID: {chunk['chunk_id']}")
-        st.write(f"Title: {chunk['title']}")
-        st.write(f"Content: {chunk['content']}")
-        st.write("-" * 60)
 
+def print_topk(results):
+    st.write("\nTop K Results:\n")
+
+    for rank, result in enumerate(results):
+        chunk = result['chunk']
+        score = result['score']
+
+        with st.expander(f"Rank {rank + 1} — {chunk['title']} (Score: {score:.4f})"):
+            st.markdown(f"**Doc ID:** {chunk['doc_id']} | **Chunk ID:** {chunk['chunk_id']}")
+            st.markdown(f"**Score:** {score:.4f}")
+            st.markdown(f"**Content:**")
+            st.write(chunk['content'])
 

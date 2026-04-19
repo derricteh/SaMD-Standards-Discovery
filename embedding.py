@@ -23,7 +23,7 @@ def generate_embeddings():
 
     chunks = create_chunks(df, df_clean)
 
-    model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+    model = SentenceTransformer('BAAI/bge-large-en-v1.5')
 
     texts = [chunk['content'] for chunk in chunks]
     # embeddings = model.encode(texts, convert_to_numpy=True, show_progress_bar=True)
@@ -45,6 +45,9 @@ def generate_embeddings():
         progress_bar.progress(pct, text=f"Embedding {min(i + batch_size, len(texts))}/{len(texts)} chunks...")
 
     embeddings = np.vstack(all_embeddings)
+
+    # normalize 
+    embeddings = embeddings / np.linalg.norm(embeddings, axis=1, keepdims=True)
     progress_bar.progress(100, text="✅ Embeddings complete!")
 
     faiss_index = create_faiss_index(embeddings, embedding_dim=embeddings.shape[1])
@@ -80,15 +83,14 @@ def row_to_text(row):
 #     return index
 
 def create_faiss_index(embeddings, embedding_dim):
-    embeddings = embeddings / np.linalg.norm(embeddings, axis=1, keepdims=True)
-    index = faiss.IndexFlatL2(embedding_dim)
+    # embeddings = embeddings / np.linalg.norm(embeddings, axis=1, keepdims=True)
+    index = faiss.IndexFlatIP(embedding_dim)
     index.add(embeddings)
     return index
 
 
 def save_index(index, index_path='faiss_index.bin'):
     faiss.write_index(index, index_path)
-    print (index_path + " created")
 
 
 
@@ -120,4 +122,4 @@ def create_chunks(df, df_clean):
 
 
 if __name__ == "__main__":
-   generate()
+   generate_embeddings()
