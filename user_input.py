@@ -22,9 +22,6 @@ def split(value):
 
     return result
 
-
-
-
 def generate_subqueries(queries):
 
 
@@ -68,7 +65,6 @@ def generate_subqueries(queries):
 
 def generate():
     file_path = 'output.json'
-
     with open(file_path, 'r') as file:
         user_input = json.load(file)
     subqueries = generate_subqueries(user_input)

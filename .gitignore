@@ -1,3 +1,5 @@
 Datasets/
 output.json
 Example prompts.txt
+chunks.json
+faiss_index.bin

@@ -4,9 +4,7 @@ import numpy as np
 import json
 from user_input import generate
 import streamlit as st
-
-
-
+from OpenAI import get_explanations
 
 def generate_topk(k=10):
     
@@ -38,10 +36,10 @@ def generate_topk(k=10):
 
     sorted_results = sorted(all_results.values(), key=lambda x: x['score'], reverse=True)[:k]
 
-    print_topk(sorted_results)
+    print_topk(sorted_results, subqueries)
 
 
-def print_topk(results):
+def print_topk(results, query):
     st.write("\nTop K Results:\n")
 
     for rank, result in enumerate(results):
@@ -53,4 +51,8 @@ def print_topk(results):
             st.markdown(f"**Score:** {score:.4f}")
             st.markdown(f"**Content:**")
             st.write(chunk['content'])
+
+            explanations = get_explanations(query, chunk['content'])
+            st.markdown("**Matched Terms:**")
+            st.write(explanations)
 

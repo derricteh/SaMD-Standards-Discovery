@@ -8,13 +8,13 @@ from topk import generate_topk
 def run_streamlit():
    
     st.title('SaMD Standards Discovery')
-    openai_api_key = st.sidebar.text_input('OpenAI API Key')
+    # openai_api_key = st.sidebar.text_input('OpenAI API Key')
 
     with st.form('my_form'):
         description_box = st.text_area('Enter Description Here:', placeholder='Enter detailed description here')
         submitted = st.form_submit_button('Submit')
         st.empty()
-        response = get_response(openai_api_key, description_box)
+        response = get_response( description_box)
         # st.json(response.output_text)
 
         with open('output.json', 'w') as f:
@@ -33,27 +33,6 @@ def run_streamlit():
 
         generate_topk(k=10)
 
-
-
-
-
-# # Function to count tokens 
-# def count_tokens(string: str) -> int:
-#     encoding_name = "p50k_base"
-#     encoding = tiktoken.get_encoding(encoding_name)
-#     num_tokens = len(encoding.encode(string))
-#     return num_tokens
-
-
-# def generate_response(input_text):
-#     try:
-#         llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
-#         response = llm(input_text)
-#         num_tokens = count_tokens(input_text)
-#         st.info(f"Input contains {num_tokens} tokens.")
-#         st.info(response)
-#     except Exception as e:
-#         st.error(f"An error occurred: {str(e)}")
 
 if __name__ == "__main__":
    run_streamlit()

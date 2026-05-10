@@ -12,7 +12,7 @@ def generate_embeddings():
     df = pd.read_csv('./Datasets/Standards - Catalogue Data - 28 Jan 2026.csv', encoding='utf-8')
 
     # to filter, only choose standards documents
-    df = df[df['category'] == 'Standard']
+    # df = df[df['category'] == 'Standard']
 
 
     df = df.fillna("")
