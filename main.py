@@ -29,7 +29,7 @@ def run_streamlit():
     #     st.write("Embeddings", get_embeddings(response.output_text))
 
         # embeddings for dataset
-        generate_embeddings()
+        # generate_embeddings() // Generate faiss_index.bin
 
         generate_topk(k=10)
 
