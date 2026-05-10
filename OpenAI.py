@@ -21,7 +21,7 @@ def get_response(input):
 
     Return ONLY a valid JSON object in exactly this structure, no preamble:
 
-    {
+    {{
     "product_type": "",
     "brief_description": "",
     "intended_purpose": "",
@@ -40,7 +40,7 @@ def get_response(input):
     "possible_classification": "",
     "lifecycle_stages": "",
     "missing_information": ""
-    }
+    }}
 
     Description:
     {input}
