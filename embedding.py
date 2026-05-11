@@ -12,7 +12,7 @@ def generate_embeddings():
     df = pd.read_csv('./Datasets/Standards - Catalogue Data - 28 Jan 2026.csv', encoding='utf-8')
 
     # to filter, only choose standards documents
-    # df = df[df['category'] == 'Standard']
+    df = df[df['category'] == 'Standard']
 
 
     df = df.fillna("")
@@ -38,7 +38,7 @@ def generate_embeddings():
 
     for i in range(0, len(texts), batch_size):
         batch = texts[i:i + batch_size]
-        batch_embeddings = model.encode(batch, convert_to_numpy=True)
+        batch_embeddings = model.encode(batch, convert_to_numpy=True    )
         all_embeddings.append(batch_embeddings)
 
         pct = min(int(((i + batch_size) / len(texts)) * 100), 100)
